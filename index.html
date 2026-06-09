@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>日本酒ゴーアラウンド北区エリア特設マップ</title>
+  <title>日本酒ゴーアラウンド【非公式】北区エリア特設マップ</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -21,7 +21,6 @@
       color: #fff;
       padding: 14px 24px 12px;
       border-bottom: 3px solid #C8102E;
-      flex-shrink: 0;
     }
     header .eyebrow {
       font-size: 10px;
@@ -30,52 +29,62 @@
       margin-bottom: 3px;
     }
     header h1 {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 700;
-      letter-spacing: 0.04em;
-      line-height: 1.3;
+      letter-spacing: 0.03em;
+      line-height: 1.4;
     }
 
     /* ── Tabs ── */
+    .tabs-wrapper {
+      background: #121220;
+      padding: 12px 0 0;
+      display: flex;
+      justify-content: center;
+    }
     .tabs {
       display: flex;
-      background: #121220;
-      flex-shrink: 0;
+      gap: 10px;
+      padding: 0 16px 0;
     }
     .tab-btn {
-      flex: 1;
-      padding: 12px 8px;
+      padding: 10px 24px;
       font-size: 13px;
       font-weight: 700;
       color: #aaa;
-      background: none;
-      border: none;
-      border-bottom: 3px solid transparent;
+      background: #1e1e30;
+      border: 1.5px solid #333;
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
       cursor: pointer;
       letter-spacing: 0.05em;
-      transition: color 0.15s, border-color 0.15s;
+      transition: all 0.15s;
     }
     .tab-btn.active {
       color: #fff;
-      border-bottom-color: #C8102E;
+      background: #2a2a40;
+      border-color: #C8102E;
+      border-bottom: 3px solid #F7F3EE;
     }
-    .tab-btn:hover { color: #fff; }
+    .tab-btn:hover:not(.active) {
+      color: #ddd;
+      background: #252535;
+    }
 
     /* ── Tab content ── */
-    .tab-pane { display: none; }
-    .tab-pane.active { display: flex; flex-wrap: wrap; flex: 1; }
+    .tab-pane { display: none; flex: 1; }
+    .tab-pane.active { display: flex; flex-wrap: wrap; }
 
     /* Col 1: Map */
     .col-map {
       flex: 1 1 55%;
-      min-height: 480px;
-      position: relative;
+      min-height: 528px;
       border-right: 1px solid #DDD8D2;
     }
     .col-map iframe {
       width: 100%;
       height: 100%;
-      min-height: 480px;
+      min-height: 528px;
       border: none;
       display: block;
     }
@@ -85,7 +94,7 @@
       flex: 1 1 280px;
       padding: 20px 18px;
       overflow-y: auto;
-      max-height: calc(100vh - 110px);
+      max-height: calc(100vh - 120px);
     }
     .section-label {
       font-size: 10px;
@@ -96,9 +105,9 @@
       margin-bottom: 14px;
     }
 
-    /* Shop card */
+    /* ── Shop card ── */
     .shop-card {
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       padding: 13px 14px;
       background: #fff;
       border: 1px solid #DDD8D2;
@@ -126,7 +135,7 @@
     .shop-note  {
       font-size: 11px; color: #555;
       background: #F7F3EE; border-radius: 4px;
-      padding: 5px 8px; margin-top: 7px; line-height: 1.6;
+      padding: 5px 8px; margin-top: 6px; line-height: 1.6;
     }
     .map-link {
       display: inline-block;
@@ -136,6 +145,78 @@
       text-decoration: none;
     }
     .map-link:hover { text-decoration: underline; }
+
+    /* ── 混雑バー ── */
+    .crowd-section {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed #DDD8D2;
+    }
+    .crowd-label {
+      font-size: 10px;
+      color: #888;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .crowd-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .crowd-slider {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      border-radius: 3px;
+      background: #DDD8D2;
+      outline: none;
+      cursor: pointer;
+    }
+    .crowd-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: #C8102E;
+      border: 2px solid #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+    .crowd-slider::-moz-range-thumb {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: #C8102E;
+      border: 2px solid #fff;
+      cursor: pointer;
+    }
+    .crowd-value {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1A1A2E;
+      min-width: 36px;
+      text-align: right;
+    }
+    .crowd-send {
+      padding: 5px 12px;
+      background: #C8102E;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+    .crowd-send:hover { background: #a00d24; }
+    .crowd-sent {
+      font-size: 10px;
+      color: #2e7d32;
+      margin-top: 4px;
+      display: none;
+    }
 
     footer {
       text-align: center;
@@ -147,8 +228,8 @@
 
     @media (max-width: 640px) {
       .tab-pane.active { flex-direction: column; }
-      .col-map { min-height: 300px; border-right: none; border-bottom: 1px solid #DDD8D2; }
-      .col-map iframe { min-height: 300px; }
+      .col-map { min-height: 308px; border-right: none; border-bottom: 1px solid #DDD8D2; }
+      .col-map iframe { min-height: 308px; }
       .col-shops { max-height: none; padding: 16px 14px; }
     }
   </style>
@@ -157,30 +238,30 @@
 
 <header>
   <div class="eyebrow">日本酒ゴーアラウンド札幌</div>
-  <h1>北区エリア特設マップ</h1>
+  <h1>【非公式】北区エリア特設マップ</h1>
 </header>
 
-<!-- Tabs -->
-<div class="tabs">
-  <button class="tab-btn active" onclick="switchTab('asabu', this)">🍶 麻生エリア</button>
-  <button class="tab-btn"        onclick="switchTab('kita24', this)">🍶 北24条エリア</button>
+<!-- ── Tabs ── -->
+<div class="tabs-wrapper">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('asabu', this)">🍶 麻生エリア</button>
+    <button class="tab-btn"        onclick="switchTab('kita24', this)">🍶 北24条エリア</button>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- ══════════════════════════════
      TAB 1: 麻生エリア
-════════════════════════════════════════ -->
+══════════════════════════════ -->
 <div id="tab-asabu" class="tab-pane active">
-
   <div class="col-map">
-    <iframe
-      src="https://www.google.com/maps/d/embed?mid=15oodXR6vW3TjdG2vxg9gC4HpBipGtpU&ehbc=2E312F"
-      allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+    <iframe src="https://www.google.com/maps/d/embed?mid=15oodXR6vW3TjdG2vxg9gC4HpBipGtpU&ehbc=2E312F"
+      allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
 
   <div class="col-shops">
     <div class="section-label">麻生エリア 参加3店舗</div>
 
+    <!-- そるくら -->
     <div class="shop-card">
       <div class="card-head">
         <span class="badge">1</span>
@@ -191,8 +272,19 @@
       <div class="shop-meta">🕐 月〜土 17:30〜23:00｜日曜定休</div>
       <div class="shop-note">日本酒・クラフトジン豊富。だし料理と合わせて。</div>
       <a class="map-link" href="https://maps.google.com/?cid=17461988761967992955" target="_blank">Google Mapsで開く →</a>
+      <div class="crowd-section">
+        <div class="crowd-label">👥 現在の待ち列</div>
+        <div class="crowd-row">
+          <input type="range" class="crowd-slider" min="0" max="20" step="5" value="0"
+            oninput="updateCrowd(this, 'sorukura-val')">
+          <span class="crowd-value" id="sorukura-val">0人</span>
+          <button class="crowd-send" onclick="sendCrowd('そるくら', 'sorukura-val', this)">送信</button>
+        </div>
+        <div class="crowd-sent" id="sorukura-sent">✓ 送信しました</div>
+      </div>
     </div>
 
+    <!-- すっぴん -->
     <div class="shop-card">
       <div class="card-head">
         <span class="badge">2</span>
@@ -203,8 +295,19 @@
       <div class="shop-meta">🕐 月〜木・日 17:00〜24:00｜金土 17:00〜翌3:00</div>
       <div class="shop-note">地元に愛される大箱居酒屋。予約可。</div>
       <a class="map-link" href="https://maps.google.com/?cid=13991106043948687060" target="_blank">Google Mapsで開く →</a>
+      <div class="crowd-section">
+        <div class="crowd-label">👥 現在の待ち列</div>
+        <div class="crowd-row">
+          <input type="range" class="crowd-slider" min="0" max="20" step="5" value="0"
+            oninput="updateCrowd(this, 'suppin-val')">
+          <span class="crowd-value" id="suppin-val">0人</span>
+          <button class="crowd-send" onclick="sendCrowd('すっぴん', 'suppin-val', this)">送信</button>
+        </div>
+        <div class="crowd-sent" id="suppin-sent">✓ 送信しました</div>
+      </div>
     </div>
 
+    <!-- スイセイ -->
     <div class="shop-card">
       <div class="card-head">
         <span class="badge">3</span>
@@ -215,27 +318,35 @@
       <div class="shop-meta">🕐 月水木金土 11:30〜15:00/17:00〜｜火 17:00〜｜日曜定休</div>
       <div class="shop-note">カウンター中心の小箱。希少な日本酒が並ぶ。</div>
       <a class="map-link" href="https://maps.google.com/?cid=16135714741328746609" target="_blank">Google Mapsで開く →</a>
+      <div class="crowd-section">
+        <div class="crowd-label">👥 現在の待ち列</div>
+        <div class="crowd-row">
+          <input type="range" class="crowd-slider" min="0" max="20" step="5" value="0"
+            oninput="updateCrowd(this, 'suisei-val')">
+          <span class="crowd-value" id="suisei-val">0人</span>
+          <button class="crowd-send" onclick="sendCrowd('スイセイ食堂', 'suisei-val', this)">送信</button>
+        </div>
+        <div class="crowd-sent" id="suisei-sent">✓ 送信しました</div>
+      </div>
     </div>
 
-    <footer>日本酒ゴーアラウンド札幌 北区エリア特設マップ</footer>
+    <footer>日本酒ゴーアラウンド札幌【非公式】北区エリア特設マップ</footer>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- ══════════════════════════════
      TAB 2: 北24条エリア
-════════════════════════════════════════ -->
+══════════════════════════════ -->
 <div id="tab-kita24" class="tab-pane">
-
   <div class="col-map">
-    <iframe
-      src="https://www.google.com/maps/d/embed?mid=1atNXA9YT7xtCpSCixqzsUvRX6vHVJhc&ehbc=2E312F"
-      allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+    <iframe src="https://www.google.com/maps/d/embed?mid=1atNXA9YT7xtCpSCixqzsUvRX6vHVJhc&ehbc=2E312F"
+      allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
 
   <div class="col-shops">
     <div class="section-label">北24条エリア 参加2店舗</div>
 
+    <!-- か楽 -->
     <div class="shop-card">
       <div class="card-head">
         <span class="badge">1</span>
@@ -247,8 +358,19 @@
       <div class="shop-meta">💴 ¥3,000〜4,000</div>
       <div class="shop-note">評価4.4★（115件）。串焼き専門店。予約可。</div>
       <a class="map-link" href="https://maps.google.com/maps/search/串焼きか楽+札幌+北24条" target="_blank">Google Mapsで開く →</a>
+      <div class="crowd-section">
+        <div class="crowd-label">👥 現在の待ち列</div>
+        <div class="crowd-row">
+          <input type="range" class="crowd-slider" min="0" max="20" step="5" value="0"
+            oninput="updateCrowd(this, 'karaku-val')">
+          <span class="crowd-value" id="karaku-val">0人</span>
+          <button class="crowd-send" onclick="sendCrowd('か楽', 'karaku-val', this)">送信</button>
+        </div>
+        <div class="crowd-sent" id="karaku-sent">✓ 送信しました</div>
+      </div>
     </div>
 
+    <!-- ら華 -->
     <div class="shop-card">
       <div class="card-head">
         <span class="badge">2</span>
@@ -260,20 +382,60 @@
       <div class="shop-meta">💴 ¥4,000〜5,000</div>
       <div class="shop-note">評価4.9★（14件）。寿司と肴の居酒屋。地下への階段が目印。</div>
       <a class="map-link" href="https://maps.google.com/maps/search/ら華+札幌+北24条" target="_blank">Google Mapsで開く →</a>
+      <div class="crowd-section">
+        <div class="crowd-label">👥 現在の待ち列</div>
+        <div class="crowd-row">
+          <input type="range" class="crowd-slider" min="0" max="20" step="5" value="0"
+            oninput="updateCrowd(this, 'raka-val')">
+          <span class="crowd-value" id="raka-val">0人</span>
+          <button class="crowd-send" onclick="sendCrowd('ら華', 'raka-val', this)">送信</button>
+        </div>
+        <div class="crowd-sent" id="raka-sent">✓ 送信しました</div>
+      </div>
     </div>
 
-    <footer>日本酒ゴーアラウンド札幌 北区エリア特設マップ</footer>
+    <footer>日本酒ゴーアラウンド札幌【非公式】北区エリア特設マップ</footer>
   </div>
 </div>
 
 <script>
+  // タブ切り替え
   function switchTab(area, btn) {
-    // すべてのタブを非アクティブに
     document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    // 選択したタブをアクティブに
     document.getElementById('tab-' + area).classList.add('active');
     btn.classList.add('active');
+  }
+
+  // スライダー値の更新
+  function updateCrowd(slider, valId) {
+    document.getElementById(valId).textContent = slider.value + '人';
+    // スライダーの色を進捗に応じて変える
+    const pct = (slider.value / 20) * 100;
+    const color = slider.value === 0 ? '#DDD8D2'
+                : slider.value <= 5  ? '#4caf50'
+                : slider.value <= 10 ? '#ff9800'
+                : '#C8102E';
+    slider.style.background =
+      `linear-gradient(to right, ${color} ${pct}%, #DDD8D2 ${pct}%)`;
+  }
+
+  // 送信（現時点はコンソールログのみ・Firebase接続後に差し替え）
+  function sendCrowd(shopName, valId, btn) {
+    const count = document.getElementById(valId).textContent;
+    const sentId = valId.replace('-val', '-sent');
+    // ★ Firebase接続後、ここにデータ送信処理を追加
+    console.log(`[送信] ${shopName}: ${count}`);
+    // 送信完了表示
+    const sentEl = document.getElementById(sentId);
+    sentEl.style.display = 'block';
+    btn.disabled = true;
+    btn.style.background = '#aaa';
+    setTimeout(() => {
+      sentEl.style.display = 'none';
+      btn.disabled = false;
+      btn.style.background = '';
+    }, 3000);
   }
 </script>
 
